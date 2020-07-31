@@ -79,6 +79,8 @@ jobs:
       - run: if [ -z "${CIRCLE_TAG}" ]; then make deploy; fi
 
   build-light:
+    docker:
+    - image: docker
     steps:
       - run: *save-cache-checksum
       - restore_cache: *restore-cache
