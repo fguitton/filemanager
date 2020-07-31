@@ -52,7 +52,7 @@
     "babel-register": "6.26.0",
     "chai": "3.5.0",
     "chai-enzyme": "0.6.1",
-    "compression": "1.6.2",
+    "compression": "1.7.4",
     "core-js": "2.5.0",
     "coveralls": "2.13.1",
     "cross-env": "5.0.1",
