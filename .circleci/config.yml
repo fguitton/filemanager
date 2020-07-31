@@ -80,7 +80,7 @@ jobs:
 
   build-light:
     docker:
-    - image: docker
+      - image: opuscapita/filemanager:ci
     steps:
       - run: *save-cache-checksum
       - restore_cache: *restore-cache
