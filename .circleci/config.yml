@@ -78,24 +78,38 @@ jobs:
       - run: if [ -z "${CIRCLE_TAG}" ]; then make publish-docker; fi
       - run: if [ -z "${CIRCLE_TAG}" ]; then make deploy; fi
 
+  build-light:
+    docker:
+      - image: opuscapita/filemanager:ci
+    steps:
+      - git/checkout-with-submodules
+      - run: *save-cache-checksum
+      - restore_cache: *restore-cache
+      - run: make refresh-dependencies
+      - save_cache: *save-cache
+      - run: make lint
+      - run: make test-restapi
+      - run: make build
+
 workflows:
   version: 2
   commit:
     jobs:
-      - init:
-          filters:
-            tags:
-              only: /.*/
-      - build-docker-ci:
-          requires:
-            - init
-          filters:
-            tags:
-              only: /.*/
-      - build:
-          requires:
-            - init
-            - build-docker-ci
-          filters:
-            tags:
-              only: /.*/
+      - build-light
+#      - init:
+#          filters:
+#            tags:
+#              only: /.*/
+#      - build-docker-ci:
+#          requires:
+#            - init
+#          filters:
+#            tags:
+#              only: /.*/
+#      - build:
+#          requires:
+#            - init
+#            - build-docker-ci
+#          filters:
+#            tags:
+#              only: /.*/
