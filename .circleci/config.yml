@@ -79,10 +79,7 @@ jobs:
       - run: if [ -z "${CIRCLE_TAG}" ]; then make deploy; fi
 
   build-light:
-    docker:
-      - image: opuscapita/filemanager:ci
     steps:
-      - git/checkout-with-submodules
       - run: *save-cache-checksum
       - restore_cache: *restore-cache
       - run: make refresh-dependencies
