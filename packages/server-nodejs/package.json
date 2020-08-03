@@ -61,6 +61,6 @@
     "raml-js-validator": "0.6.1",
     "raml2html": "7.6.0",
     "rimraf": "2.6.2",
-    "superagent": "3.8.3"
+    "superagent": "5.3.1"
   }
 }
